@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -36,12 +37,26 @@ class ProductController extends Controller
 
     public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return response()->json([
+            'message' => 'Siz tanlagan mahsulotingiz.',
+            'product' => $product,
+        ]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $product->update(
+            $request->validated()
+        );
+
+        return response()->json([
+            'message' => 'Mahsulot muvaffaqiyatli yangilandi.',
+            'product' => $product
+        ]);
     }
 
     public function destroy(string $id)
