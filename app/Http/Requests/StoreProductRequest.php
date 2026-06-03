@@ -14,7 +14,7 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'  => 'required|string|max:255|min:2',
+            'name'  => 'required|string|max:255',
 
             'price' => 'required|numeric|min:100',
 
@@ -45,7 +45,6 @@ class StoreProductRequest extends FormRequest
             'name.required' => 'Mahsulot nomini kiriting.',
             'name.string'   => 'Mahsulot nomi matn bo`lishi kerak.',
             'name.max'      => 'Mahsulot nomi :max ta belgidan oshmasligi kerak.',
-            'name.min' => "Mahsulot nomi kamida :min ta belgidan iborat bo'lisi kerak",
 
             // price
             'price.required' => 'Narxni kiriting.',

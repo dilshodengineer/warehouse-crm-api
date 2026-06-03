@@ -36,27 +36,27 @@ class UpdateProductRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             // name
             'name.required' => 'Mahsulot nomini kiriting.',
             'name.string'   => 'Mahsulot nomi matn bo`lishi kerak.',
             'name.max'      => 'Mahsulot nomi :max ta belgidan oshmasligi kerak.',
+            'name.min'      => "Maxsulot nomi kamida :min ta belgidan ko'proq bo'lishi kerak",
 
-            // price
+            // price  `
             'price.required' => 'Narxni kiriting.',
-            'price.numeric'  => 'Narx raqam bo`lishi kerak.',
-            'price.min'      => 'Narx kamida :min bo`lishi kerak.',
+            'price.numeric' => 'Narx raqam bo`lishi kerak.',
 
             // stock
             'stock.required' => 'Iltimos mahsulot miqdorini kiriting.',
-            'stock.numeric'  => 'Miqdor raqam bo`lishi kerak.',
-            'stock.min'      => 'Miqdor manfiy bo`lishi mumkin emas.',
+            'stock.numeric' => 'Miqdor raqam bo`lishi kerak.',
+            'stock.min' => 'Miqdor manfiy bo`lishi mumkin emas.',
 
             // unit
             'unit.required' => 'Iltimos mahsulot o`lchov turini tanlang.',
-            'unit.in'       => 'O`lchov turi faqat kg, l yoki dona bo`lishi mumkin.',
+            'unit.in' => 'O`lchov turi faqat kg, l yoki dona bo`lishi mumkin.',
         ];
     }
 }

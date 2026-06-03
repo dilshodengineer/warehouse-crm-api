@@ -28,11 +28,12 @@ class ProductController extends Controller
         );
 
         return response()->json([
+            'success' => true,
             'message' => 'Mahsulot muvaffaqiyatli qo`shildi.',
-            'product' => $product,
+            'data' => $product,
 
         ], 201);
-        
+            
     }
 
     public function show(string $id)
@@ -40,8 +41,9 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         return response()->json([
+            'success' => true,
             'message' => 'Siz tanlagan mahsulotingiz.',
-            'product' => $product,
+            'data' => $product,
         ]);
     }
 
@@ -54,13 +56,23 @@ class ProductController extends Controller
         );
 
         return response()->json([
+            'success' => true,
             'message' => 'Mahsulot muvaffaqiyatli yangilandi.',
-            'product' => $product
+            'data' => $product
         ]);
     }
 
     public function destroy(string $id)
     {
+
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Mahsulot muvaffaqiyatli o'chirildi"
+        ], 200);
         //
     }
 }
