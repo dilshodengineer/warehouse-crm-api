@@ -73,6 +73,6 @@ class ProductController extends Controller
             'success' => true,
             'message' => "Mahsulot muvaffaqiyatli o'chirildi"
         ], 200);
-        //
+        
     }
 }

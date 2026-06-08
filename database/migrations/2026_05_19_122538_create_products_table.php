@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price', 10, 2);
+            $table->unsignedBigInteger('price');
             $table->decimal('stock', 10, 2)->default(0);
             $table->enum('unit', ['kg', 'l', 'pcs']);
             $table->text('description')->nullable();
