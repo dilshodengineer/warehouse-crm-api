@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\SaleItem;
 
 class Sale extends Model
 {
     protected $fillable = [
         'user_id',
+        'customer',
+        'phone',
         'total_amount',
         'paid_amount',
         'discount',
@@ -22,7 +22,7 @@ class Sale extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function items() 
+    public function items()
     {
         return $this->hasMany(SaleItem::class);
     }

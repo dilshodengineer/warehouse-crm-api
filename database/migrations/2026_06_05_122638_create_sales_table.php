@@ -19,6 +19,9 @@ return new class extends Migration
                 ->constrained()
                 ->nullOnDelete();
 
+            $table->string('customer')->nullable();
+            $table->string('phone')->nullable();
+
             $table->unsignedBigInteger('total_amount')->default(0);
             $table->unsignedBigInteger('paid_amount')->default(0);
             $table->unsignedBigInteger('discount')->default(0);

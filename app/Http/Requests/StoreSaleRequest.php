@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Override;
 
 class StoreSaleRequest extends FormRequest
 {
@@ -28,9 +27,13 @@ class StoreSaleRequest extends FormRequest
 
             'items.*.product_id' => ['required', 'integer', 'exists:products,id'],
             'items.*.quantity' => ['required', 'integer', 'min:1'],
+            'items.*.unit' => ['required', 'in:pcs,l,kg'],
 
             'paid_amount' => ['nullable', 'integer', 'min:0'],
             'discount' => ['nullable', 'integer', 'min:0'],
+
+            'customer' => ['required', 'string', 'min:3'],
+            'phone' => ['required', 'string', 'min:9', 'max:20'],
         ];
     }
 
@@ -42,6 +45,9 @@ class StoreSaleRequest extends FormRequest
             'items.*.product_id.required' => 'Product tanlanmagan',
             'items.*.product_id.exists' => 'Bunday product mavjud emas',
             'items.*.quantity.min' => "Quantity kamida 1 bo'lishi kerak",
+            'customer.required' => "Mujoz isminiham kiriting.",
+            'customer.min' => "Mijoz ismi kamida :min ta harf yoki belgidan iborat bo'lishi kerak",
+            'phone.required' => "Mijozning telefom raqami ham talab qilinadi"
         ];
     }
 }

@@ -10,16 +10,23 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    public function __construct(
-        private SaleService $saleService
-    )
-    {}
+    public function __construct(SaleService $saleService)
+    {
+        $this->saleService = $saleService;
+    }
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $data = Sale::with('items', 'user')->latest()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Sales have been got successfuly.",
+            'data' => $data
+        ]);
     }
 
     /**
@@ -37,7 +44,7 @@ class SaleController extends Controller
             'message' => "Savdo muvaffaqiyatli qo'shildi",
             'data' => $sale->load('items', 'user'),
         ], 201);
-    
+
     }
 
     /**

@@ -15,11 +15,9 @@ Route::middleware(['auth:sanctum'])
                 Route::apiResource('products', ProductController::class);
             });
 
-
         Route::middleware(['role:admin,owner,cashier'])
             ->group(function () {
                 Route::apiResource('sales', SaleController::class);
             });
-
 
     });

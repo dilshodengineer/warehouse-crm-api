@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('product_sku')->nullable();
 
             $table->integer('quantity');
+            $table->enum('unit', ['kg', 'l', 'pcs']);
 
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('subtotal');

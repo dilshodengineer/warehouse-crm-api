@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Sale;
-use App\Models\Product;
+
 
 class SaleItem extends Model
 {
@@ -13,14 +12,15 @@ class SaleItem extends Model
         'product_id',
         'product_name',
         'product_sku',
+        'unit',
         'quantity',
         'price',
         'subtotal'
     ];
 
-    public function sale() 
+    public function sale()
     {
-        return $this->belongsTo(Sale::class);   
+        return $this->belongsTo(Sale::class);
     }
 
     public function product()
