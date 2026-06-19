@@ -33,7 +33,7 @@ class ProductController extends Controller
             'data' => $product,
 
         ], 201);
-            
+
     }
 
     public function show(string $id)
@@ -73,6 +73,6 @@ class ProductController extends Controller
             'success' => true,
             'message' => "Mahsulot muvaffaqiyatli o'chirildi"
         ], 200);
-        
+
     }
 }
