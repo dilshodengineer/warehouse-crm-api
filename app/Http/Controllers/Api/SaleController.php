@@ -20,7 +20,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $data = Sale::with('items', 'user')->latest()->get();
+        $data = Sale::with('items', 'user')->latest()->paginate(10);
 
         return response()->json([
             'success' => true,
@@ -52,7 +52,12 @@ class SaleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sale = Sale::with(['items', 'user'])->findOrFail($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Savdo tarixi va retsepti muvaffaqiyatli oldi.',
+            'data' => $sale
+        ]);
     }
 
     /**
