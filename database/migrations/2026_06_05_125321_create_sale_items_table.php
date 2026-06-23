@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_sku')->nullable();
 
-            $table->integer('quantity');
+            $table->numeric('quantity');
             $table->enum('unit', ['kg', 'l', 'pcs']);
 
             $table->unsignedBigInteger('price');
