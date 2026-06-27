@@ -28,7 +28,7 @@ class SaleService
             foreach ($items as $item) {
 
                 $productId = $item['product_id'];
-                $quantity = (int) $item['quantity'];
+                $quantity = (float) $item['quantity'];
 
                 $product = Product::lockForUpdate()->find($productId);
 
@@ -72,7 +72,7 @@ class SaleService
             foreach ($items as $item) {
 
                 $product = $productsMap[$item['product_id']];
-                $quantity = (int) $item['quantity'];
+                $quantity = (float) $item['quantity'];
 
                 $price = (int) $product->price;
                 $subtotal = $price * $quantity;

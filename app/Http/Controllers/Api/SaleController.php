@@ -15,9 +15,7 @@ class SaleController extends Controller
         $this->saleService = $saleService;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $data = Sale::with('items', 'user')->latest()->paginate(10);
@@ -29,9 +27,7 @@ class SaleController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreSaleRequest $request)
     {
         $sale = $this->saleService->createSale(
@@ -47,9 +43,7 @@ class SaleController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         $sale = Sale::with(['items', 'user'])->findOrFail($id);
@@ -60,17 +54,13 @@ class SaleController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
         //
