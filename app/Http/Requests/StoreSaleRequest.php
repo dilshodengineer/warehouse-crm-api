@@ -29,7 +29,12 @@ class StoreSaleRequest extends FormRequest
             'items.*.quantity' => ['required', 'numeric', 'min:0.01'],
             'items.*.unit' => ['required', 'in:pcs,l,kg'],
 
-            'paid_amount' => ['nullable', 'integer', 'min:0'],
+            'paid_amount' => [
+                'nullable',
+                'string',
+                'regex:/^\d+( \d+)*$/',
+            ],
+
             'discount' => ['nullable', 'integer', 'min:0'],
 
             'customer' => ['required', 'string', 'min:3'],
@@ -37,7 +42,7 @@ class StoreSaleRequest extends FormRequest
         ];
     }
 
-    public function messages() : array
+    public function messages(): array
     {
         return [
             'items.required' => "Kamida bitta mahsulot bo'lishi shart",

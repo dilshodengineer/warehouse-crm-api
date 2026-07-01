@@ -10,12 +10,14 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
+    private SaleService $saleService;
+    
     public function __construct(SaleService $saleService)
     {
         $this->saleService = $saleService;
     }
 
-    
+
     public function index()
     {
         $data = Sale::with('items', 'user')->latest()->paginate(10);
@@ -27,7 +29,7 @@ class SaleController extends Controller
         ]);
     }
 
-    
+
     public function store(StoreSaleRequest $request)
     {
         $sale = $this->saleService->createSale(
@@ -37,13 +39,12 @@ class SaleController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => "Savdo muvaffaqiyatli qo'shildi",
+            'message' => "Savdo muvaffaqiyatli amalga oshirildi",
             'data' => $sale->load('items', 'user'),
         ], 201);
-
     }
 
-    
+
     public function show(string $id)
     {
         $sale = Sale::with(['items', 'user'])->findOrFail($id);
@@ -54,13 +55,13 @@ class SaleController extends Controller
         ]);
     }
 
-   
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-    
+
     public function destroy(string $id)
     {
         //

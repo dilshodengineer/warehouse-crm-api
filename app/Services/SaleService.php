@@ -7,12 +7,16 @@ use App\Models\User;
 use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Support\Price;
 
 class SaleService
 {
     public function createSale(array $data, User $user): Sale
     {
         return DB::transaction(function () use ($data, $user) {
+
+            $paid = Price::parse($data['paid_amount'] ?? 0);
+            $discount = Price::parse($data['discount'] ?? 0);
 
             $items = $data['items'] ?? [];
 
@@ -60,8 +64,8 @@ class SaleService
                 'customer' => $data['customer'] ?? null,
                 'phone' => $data['phone'] ?? null,
                 'total_amount' => 0,
-                'paid_amount' => (int) ($data['paid_amount'] ?? 0),
-                'discount' => (int) ($data['discount'] ?? 0),
+                'paid_amount' => $paid,
+                'discount' => $discount,
                 'payment_status' => 'unpaid',
             ]);
 
@@ -99,8 +103,6 @@ class SaleService
 
             $discount = (int) ($data['discount'] ?? 0);
             $totalAfterDiscount = max(0, $totalAmount - $discount);
-
-            $paid = (int) ($data['paid_amount'] ?? 0);
 
             $status = match (true) {
                 $paid >= $totalAfterDiscount => 'paid',
